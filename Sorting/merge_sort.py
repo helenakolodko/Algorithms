@@ -1,10 +1,10 @@
 def merge(array, start, middle, end):
-    left_length = middle + 1
-    right_length = end + 1
-    left = array[start:left_length]
-    right = array[middle+1:right_length]
+    left = array[start:middle + 1]
+    right = array[middle+1:end + 1]
     i = 0
     j = 0
+    left_length = len(left)
+    right_length = len(right)
     for k in range(start, end+1):
         if i < left_length:
             if j < right_length:
@@ -21,6 +21,8 @@ def merge(array, start, middle, end):
             array[k] = right[j]
             j += 1
 
+# TODO: insertion sort for small subarrays
+# TODO: default values for start and end params
 def sort(array, start, end):
     if start < end:
         middle = (start + end) / 2
