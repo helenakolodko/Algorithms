@@ -1,16 +1,22 @@
-import sys
-
 def merge(array, start, middle, end):
-    left = array[start:middle + 1]
-    right = array[middle+1:end + 1]
-    left.append(sys.maxint)
-    right.append(sys.maxint)
+    left_length = middle + 1
+    right_length = end + 1
+    left = array[start:left_length]
+    right = array[middle+1:right_length]
     i = 0
     j = 0
     for k in range(start, end+1):
-        if left[i] <= right[j]:
-            array[k] = left[i]
-            i += 1
+        if i < left_length:
+            if j < right_length:
+                if left[i] <= right[j]:
+                    array[k] = left[i]
+                    i += 1
+                else:
+                    array[k] = right[j]
+                    j += 1
+            else:
+                array[k] = left[i]
+                i += 1
         else:
             array[k] = right[j]
             j += 1
