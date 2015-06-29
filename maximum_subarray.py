@@ -36,9 +36,24 @@ def find_max_subarray(array, low, high):
         else:
             return cross_low, cross_high, cross_sum
 
-# TODO: implement brute-force algorithm
+def brute_find_max_subarray(array, low, high):
+    max_low = low
+    max_high = high
+    max_sum = -sys.maxint
+    for i in range(low, high + 1):
+        temp_sum = 0
+        for j in range(i, high + 1):
+            temp_sum += array[j]
+            if temp_sum > max_sum:
+                max_sum = temp_sum
+                max_low = i
+                max_high = j
+    return max_low, max_high, max_sum
+
 # TODO: find n0 point at which the recursive algorithm beats the brute-force algorithm
 if __name__ == '__main__':
     array = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4]
     low, high, max_sum = find_max_subarray(array, 0, len(array) - 1)
+    print(array[low:high+1], max_sum)
+    low, high, max_sum = brute_find_max_subarray(array, 0, len(array) - 1)
     print(array[low:high+1], max_sum)
