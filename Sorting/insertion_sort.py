@@ -1,5 +1,8 @@
 def sort(array, increasing=True):
-    for j in range(1, len(array)):
+    sort_subarray(array, 0, len(array) - 1, increasing)
+
+def sort_subarray(array, low, high, increasing=True):
+    for j in range(low + 1, high + 1):
         key = array[j]
         i = j - 1
         while i >= 0 and (array[i] > key) == increasing:
